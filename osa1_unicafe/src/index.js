@@ -13,6 +13,7 @@ const Display = (props) => (
 
 const Statistics = (props) => {
   const { good, neutral, bad } = props.choice
+  if (good + neutral + bad != 0) {
 
   return (
     <div>
@@ -25,6 +26,11 @@ const Statistics = (props) => {
       <p>Positiivisia {100 * (good / (good + neutral + bad))}%</p>
     </div>
     )
+} else {
+    return (
+      <p>Ei yhtään palautetta annetu</p>
+    )
+  }
 }
 
 const App = () => {
