@@ -11,19 +11,24 @@ const Display = (props) => (
   <p> {props.text} {props.value} </p>
 )
 
+const Statistic = (props) => {
+  return(
+    <p>{props.text} {props.value}</p>
+  )
+}
+
 const Statistics = (props) => {
   const { good, neutral, bad } = props.choice
   if (good + neutral + bad != 0) {
 
   return (
     <div>
-      <h1>statistiikkaa</h1>
-      <p>Hyvä {good}</p>
-      <p>Neutraali {neutral}</p>
-      <p>Huono {bad}</p>
-      <p>Yhteensä {good + neutral + bad}</p>
-      <p>Keskiarvo {(good - bad) / (good + neutral + bad)}</p>
-      <p>Positiivisia {100 * (good / (good + neutral + bad))}%</p>
+      <Statistic text='Hyvä' value={good} />
+      <Statistic text='Neutraali' value={neutral} />
+      <Statistic text='Huono' value={bad} />
+      <Statistic text='yhteensä' value={good + neutral + bad} />
+      <Statistic text='Keskiarvo' value={(good - bad) / (good + neutral + bad)} />
+      <Statistic text='Positiivisia' value={`${100 * (good / (good + neutral + bad))} %`} />
     </div>
     )
 } else {
@@ -63,10 +68,6 @@ const App = () => {
       <Button handleClick={goodReview} text='Hyvä'  />
       <Button handleClick={neutralReview} text='Neutraali'  />
       <Button handleClick={badReview} text='Huono'  />
-      <h1>statistiikka</h1>
-      <Display text='Hyvä' value={good} />
-      <Display text='Neutraali' value={neutral} />
-      <Display text='Huono' value={bad} />
       <Statistics choice={feedbacks} />
     </div>
   )
