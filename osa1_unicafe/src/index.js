@@ -7,10 +7,6 @@ const Button = (props) => (
   </button>
 )
 
-const Display = (props) => (
-  <p> {props.text} {props.value} </p>
-)
-
 const Statistic = (props) => {
   return(
     <p>{props.text} {props.value}</p>
@@ -19,7 +15,7 @@ const Statistic = (props) => {
 
 const Statistics = (props) => {
   const { good, neutral, bad } = props.choice
-  if (good + neutral + bad != 0) {
+  if (good + neutral + bad !== 0) {
 
   return (
     <div>
