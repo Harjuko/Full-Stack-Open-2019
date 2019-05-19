@@ -23,6 +23,7 @@ const Statistics = (props) => {
 
   return (
     <div>
+      <h1>statistiikka</h1>
       <Statistic text='Hyvä' value={good} />
       <Statistic text='Neutraali' value={neutral} />
       <Statistic text='Huono' value={bad} />
