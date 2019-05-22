@@ -9,7 +9,10 @@ const Button = (props) => (
 
 const Statistic = (props) => {
   return(
-    <p>{props.text} {props.value}</p>
+    <tr>
+      <td>{props.text}</td>
+      <td>{props.value}</td>
+    </tr>
   )
 }
 
@@ -20,12 +23,16 @@ const Statistics = (props) => {
   return (
     <div>
       <h1>statistiikka</h1>
-      <Statistic text='Hyvä' value={good} />
-      <Statistic text='Neutraali' value={neutral} />
-      <Statistic text='Huono' value={bad} />
-      <Statistic text='yhteensä' value={good + neutral + bad} />
-      <Statistic text='Keskiarvo' value={(good - bad) / (good + neutral + bad)} />
-      <Statistic text='Positiivisia' value={`${100 * (good / (good + neutral + bad))} %`} />
+      <table>
+        <tbody>
+          <Statistic text='Hyvä' value={good} />
+          <Statistic text='Neutraali' value={neutral} />
+          <Statistic text='Huono' value={bad} />
+          <Statistic text='yhteensä' value={good + neutral + bad} />
+          <Statistic text='Keskiarvo' value={(good - bad) / (good + neutral + bad)} />
+          <Statistic text='Positiivisia' value={`${Math.trunc(100 * (good / (good + neutral + bad)))} %`} />
+        </tbody>
+      </table>
     </div>
     )
 } else {
