@@ -7,15 +7,29 @@ const Button = (props) => (
   </button>
 )
 
-const Display = props => <div>{props.value}</div>
+const Display = (props) => (
+  <div>
+    <p> {props.value1} </p>
+    <p> ääniä {props.value2} </p>
+  </div>
+)
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
 
+  const [votes, setVotes] = useState(new Uint8Array(anecdotes.length))
+
+  const addVote = (selected) => () => {
+    const copy = [...votes]
+    copy[selected] += 1
+    setVotes(copy)
+  }
+
   return (
     <div>
-      <Display value={anecdotes[selected]} />
+      <Display value1={anecdotes[selected]} value2={votes[selected]} />
       <Button handleClick={() => setSelected(Math.floor(Math.random() * anecdotes.length))} text="Random Viisaus" />
+      <Button handleClick={addVote(selected)} text="Äänestä tätä" />
     </div>
   )
 }
