@@ -9,7 +9,6 @@ const Button = (props) => (
 
 const Display = props => <div>{props.value}</div>
 
-
 const App = (props) => {
   const [selected, setSelected] = useState(0)
 
