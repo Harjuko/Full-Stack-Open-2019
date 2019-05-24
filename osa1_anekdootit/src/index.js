@@ -9,10 +9,37 @@ const Button = (props) => (
 
 const Display = (props) => (
   <div>
+    <h2>Anecdote of the day</h2>
     <p> {props.value1} </p>
-    <p> ääniä {props.value2} </p>
+    <p> has {props.value2} votes </p>
   </div>
 )
+
+const MostVotes = (props) => {
+
+const vote = props.votes
+const max = Math.max(...vote)
+const maxIndex = vote.indexOf(max)
+
+
+if (vote.reduce((total, amount) => total + amount) === 0) {
+  return (
+    <div>
+      <h2>Anecdote with most votes:</h2>
+      <p>No votes yet</p>
+    </div>
+    )
+  }
+  return (
+    <div>
+      <h2>Anecdote with most votes:</h2>
+      <p> {props.anecdotes[maxIndex]} </p>
+      <p> with {props.votes[maxIndex]} votes </p>
+    </div>
+
+  )
+}
+
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
@@ -28,8 +55,9 @@ const App = (props) => {
   return (
     <div>
       <Display value1={anecdotes[selected]} value2={votes[selected]} />
-      <Button handleClick={() => setSelected(Math.floor(Math.random() * anecdotes.length))} text="Random Viisaus" />
-      <Button handleClick={addVote(selected)} text="Äänestä tätä" />
+      <Button handleClick={() => setSelected(Math.floor(Math.random() * anecdotes.length))} text="next anecdote" />
+      <Button handleClick={addVote(selected)} text="vote" />
+      <MostVotes votes={votes} anecdotes={anecdotes} />
     </div>
   )
 }
