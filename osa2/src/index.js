@@ -27,11 +27,20 @@ const Content = ({course}) => {
   )
 }
 
+const Total = ({course}) => {
+ const exercises = course.parts.map(part => part.exercises)
+ const value = (exercises.reduce((s, p) => s + p))
+   return (
+    <p>yhteensä {value} </p>
+  )
+}
+
 const Course = ({course}) => {
   return (
     <div>
       <Header course={course} />
       <Content course={course} />
+      <Total course={course}/>
     </div>
   )
 }
