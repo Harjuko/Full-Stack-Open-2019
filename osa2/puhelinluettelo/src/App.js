@@ -5,7 +5,7 @@ const Persons = ({persons}) => {
     persons.map(part => {
       return(
           <div key={part.name}>
-            <p>{part.name}</p>
+            <p>{part.name} {part.number}</p>
           </div>
       )
     })
@@ -15,26 +15,30 @@ const Persons = ({persons}) => {
 
 const App = () => {
   const [ persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
+    { name: 'Arto Hellas', number: '040-123456' }
   ])
   const [ newName, setNewName ] = useState('')
+  const [ newNumber, setNewNumber ] = useState('')
 
   const addPerson = (event) => {
   event.preventDefault()
   const personObject = {
-    name: newName,
+    name: newName, number: newNumber
   }
 
   const nameExists = persons.some(p => p.name === newName)
 
   if (nameExists === true)
 
-    { window.alert(`${newName} on jo luettelossa`) }
+    { window.alert(`${newName} on jo luettelossa`)
+     setNewName('')
+    setNewNumber('')}
 
     else
 
     {setPersons(persons.concat(personObject))
     setNewName('')
+    setNewNumber('')
     }
   }
 
@@ -42,6 +46,11 @@ const App = () => {
   const handlePersonChange = (event) => {
     setNewName(event.target.value)
   }
+
+  const handleNumberChange = (event) => {
+    setNewNumber(event.target.value)
+  }
+
 
   return (
     <div>
@@ -51,6 +60,12 @@ const App = () => {
           nimi: <input
           value={newName}
           onChange={handlePersonChange}
+          />
+        </div>
+        <div>
+          numero: <input
+          value={newNumber}
+          onChange={handleNumberChange}
           />
         </div>
         <div>
