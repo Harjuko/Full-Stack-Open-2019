@@ -1,24 +1,18 @@
 import React, { useState } from 'react'
-
-const Persons = ({persons}) => {
-  return (
-    persons.map(part => {
-      return(
-          <div key={part.name}>
-            <p>{part.name} {part.number}</p>
-          </div>
-      )
-    })
-  )
-}
-
+import Persons from './components/Persons'
+import Form from './components/Form'
+import Filter from './components/Filter'
 
 const App = () => {
   const [ persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '040-123456' }
+    { name: 'Arto Hellas', number: '040-123456' },
+    { name: 'Ada Lovelace', number: '39-44-5323523' },
+    { name: 'Dan Abramov', number: '12-43-234345' },
+    { name: 'Mary Poppendieck', number: '39-23-6423122' }
   ])
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
+  const [Filtered, setFiltered] = useState('')
 
   const addPerson = (event) => {
   event.preventDefault()
@@ -51,29 +45,18 @@ const App = () => {
     setNewNumber(event.target.value)
   }
 
+  const handleFilterChange = (event) => {
+    setFiltered(event.target.value)
+  }
+
 
   return (
     <div>
       <h2>Puhelinluettelo</h2>
-      <form onSubmit={addPerson}>
-        <div>
-          nimi: <input
-          value={newName}
-          onChange={handlePersonChange}
-          />
-        </div>
-        <div>
-          numero: <input
-          value={newNumber}
-          onChange={handleNumberChange}
-          />
-        </div>
-        <div>
-          <button type="submit">lisää</button>
-        </div>
-      </form>
+      <Filter handleFilterChange={handleFilterChange} Filtered={Filtered} handleFilterChange={handleFilterChange} />
+      <Form addPerson={addPerson} newName={newName} handlePersonChange={handlePersonChange} newNumber={newNumber} handleNumberChange={handleNumberChange} />
       <h2>Numerot</h2>
-      <Persons persons={persons}/>
+      <Persons persons={persons} setPersons={setPersons} Filtered={Filtered} />
     </div>
   )
 

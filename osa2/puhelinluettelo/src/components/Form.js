@@ -1,0 +1,25 @@
+import React from 'react'
+
+const Form = (props) => {
+  return(
+      <form onSubmit={props.addPerson}>
+        <div>
+          nimi: <input
+          value={props.newName}
+          onChange={props.handlePersonChange}
+          />
+        </div>
+        <div>
+          numero: <input
+          value={props.newNumber}
+          onChange={props.handleNumberChange}
+          />
+        </div>
+        <div>
+          <button type="submit">lisää</button>
+        </div>
+      </form>
+    )
+}
+
+export default Form
